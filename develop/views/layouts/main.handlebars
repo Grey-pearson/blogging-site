@@ -4,24 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fund My Project!</title>
+    <title>Blog</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <div class="flex-column justify-space-around">
-        <header class="display-flex justify-space-around align-center p-2">
-            <a href="dashborad">dashborad</a>
-            <a href=""></a>
-            <!-- Conditionally render login or logout links -->
-            {{#if logged_in}}
-            <a href="/profile">profile</a>
-            <button class="no-button" id="logout">logout</button>
-            {{else}}
-            <a href="/login">login</a>
-            {{/if}}
-        </header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu">
+                <a class="navbar-item" href="/homepage">homepage</a>
+                <a class="navbar-item" href="dashborad">dashborad</a>
+                <!-- Conditionally render login or logout links -->
+                {{#if logged_in}}
+                <a class="navbar-item" href="/profile">profile</a>
+                <button class="no-button" id="logout">logout</button>
+                {{else}}
+                <a class="navbar-item" href="/login">login</a>
+                {{/if}}
+            </div>
+        </nav>
         <main class="container container-fluid mt-5">
             <!-- Render the sub layout -->
             {{{ body }}}
@@ -29,6 +31,7 @@
         <footer>
 
         </footer>
+
     </div>
 
     <!-- Render script for logged in users only -->
