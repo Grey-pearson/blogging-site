@@ -117,5 +117,6 @@ body {
 
 .card {
   margin-bottom: 30px;
-  background-color: pink;
+  background-color: rgba(0, 128, 128, 0.459);
+  color: black;
 }
