@@ -13,11 +13,10 @@
     <div class="flex-column justify-space-around">
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-menu">
-                <a class="navbar-item" href="/homepage">homepage</a>
-                <a class="navbar-item" href="dashborad">dashborad</a>
+                <a class="navbar-item" href="/">homepage</a>
+                <a class="navbar-item" href="/dashborad">dashborad</a>
                 <!-- Conditionally render login or logout links -->
                 {{#if logged_in}}
-                <a class="navbar-item" href="/profile">profile</a>
                 <button class="no-button" id="logout">logout</button>
                 {{else}}
                 <a class="navbar-item" href="/login">login</a>
