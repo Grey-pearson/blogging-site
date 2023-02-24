@@ -1,0 +1,10 @@
+login.js / userRoutes.js
+- fix signing up, doesnt seem to save users but lets them sign in if the creds meet criteria
+
+general:
+- loading comments
+- creating a field to add comments
+- js required to create and update comments
+
+dashboard:
+- fill with html elements and form to create new posts

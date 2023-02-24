@@ -13,28 +13,32 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  const posts = await Post.bulkCreate(postData);
+  await Post.bulkCreate(postData)
 
-  for (const posts of postData) {
-    await Post.create({
-      ...posts,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
+  // const posts = await Post.bulkCreate(postData)
 
-  const comment = await Comment.bulkCreate(commentData);
+  // for (const posts of postData) {
+  //   await Post.create({
+  //     ...posts,
+  //     user_id: users[Math.floor(Math.random() * users.length)].id,
+  //   });
+  // }
 
-  for (const comment of commentData) {
-    await Comment.create({
-      ...comment,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
+  await Comment.bulkCreate(commentData)
 
-    await Comment.create({
-      ...comment,
-      post_id: posts[Math.floor(Math.random() * posts.length)].id,
-    });
-  }
+  // const comment = await Comment.bulkCreate(commentData)
+
+  // for (const comment of commentData) {
+  //   await Comment.create({
+  //     ...comment,
+  //     user_id: users[Math.floor(Math.random() * users.length)].id,
+  //   });
+
+  //   await Comment.create({
+  //     ...comment,
+  //     post_id: posts[Math.floor(Math.random() * posts.length)].id,
+  //   });
+  // }
   // console.log(comment)
   process.exit(0);
 };

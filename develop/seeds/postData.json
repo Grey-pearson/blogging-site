@@ -2,16 +2,19 @@
   {
     "title": "Music Near Me",
     "contents": "A mobile app that will send you notifications whenever a concert is playing in your area.",
-    "date_created": "2012-04-23T18:25:43.511Z"
+    "date_created": "2012-04-23T18:25:43.511Z",
+    "user_id": 1
   },
   {
     "title": "yaba daba doo",
     "contents": "scooby doo is classic litretur and should be taught in schools",
-    "date_created": "2012-04-23T18:25:43.511Z"
+    "date_created": "2012-04-23T18:25:43.511Z",
+    "user_id": 2
   },
   {
     "title": "ya boi",
     "contents": "A mobile app that will send you notifications whenever a concert is playing in your area.",
-    "date_created": "2012-04-23T18:25:43.511Z"
+    "date_created": "2012-04-23T18:25:43.511Z",
+    "user_id": 3
   }
 ]

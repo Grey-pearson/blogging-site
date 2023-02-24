@@ -39,7 +39,7 @@ const signUp = async (event) => {
 
     if (response.ok) {
       console.log('response is ok')
-      document.location.replace('/profile');
+      document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
       console.log(response.statusText)
