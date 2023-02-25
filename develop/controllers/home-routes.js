@@ -11,30 +11,33 @@ router.get('/', async (req, res) => {
           model: User,
           attributes: ['username'],
         },
+        {
+          model: Comment,
+        },
       ],
     });
 
     const post = postData.map((post) => post.get({ plain: true }));
-    console.log(18)
-    const commentData = await Comment.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-        {
-          model: Post,
-          attributes: ['id'],
-        }
-      ],
-    });
-    console.log(31)
-    const comment = commentData.map((comment) => comment.get({ plain: true }));
-    // console.log(post)
+
+    // const commentData = await Comment.findAll({
+    //   include: [
+    //     {
+    //       model: User,
+    //       attributes: ['username'],
+    //     },
+    //     {
+    //       model: Post,
+    //       attributes: ['id'],
+    //     }
+    //   ],
+    // });
+    // const comment = commentData.map((comment) => comment.get({ plain: true }));
+
+    console.log(post)
     // console.log(comment)
     res.render('homepage', {
       post,
-      comment,
+      // comment,
       logged_in: req.session.logged_in
     });
   } catch (err) {
