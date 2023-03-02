@@ -11,33 +11,20 @@ router.get('/', async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        {
-          model: Comment,
-        },
+        { model: Comment, }
       ],
     });
 
     const post = postData.map((post) => post.get({ plain: true }));
 
-    // const commentData = await Comment.findAll({
-    //   include: [
-    //     {
-    //       model: User,
-    //       attributes: ['username'],
-    //     },
-    //     {
-    //       model: Post,
-    //       attributes: ['id'],
-    //     }
-    //   ],
-    // });
-    // const comment = commentData.map((comment) => comment.get({ plain: true }));
+    let eachComments = []
+    post.forEach(comments => eachComments.push(comments.comments))
 
-    console.log(post)
-    // console.log(comment)
+    // console.log(eachComments)
+
     res.render('homepage', {
       post,
-      // comment,
+      // eachComments,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -79,8 +66,24 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        { model: Comment, }
+      ],
+    });
+
+    const post = postData.map((post) => post.get({ plain: true }));
+
+    let eachComments = []
+    post.forEach(comments => eachComments.push(comments.comments))
+
     res.render('dashboard', {
       ...user,
+      post,
       logged_in: true
     });
   } catch (err) {
