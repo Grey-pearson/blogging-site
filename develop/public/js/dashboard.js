@@ -1,15 +1,14 @@
 const newPost = async (event) => {
   event.preventDefault();
 
-  const postText = document.querySelector('#postForm').value
-  console.log(postText)
-  // get time?
-  const time = new Date();
+  const contents = document.querySelector('#post').value
+  const title = document.querySelector('#title').value
+  const date_created = new Date();
 
-  if (postText) {
+  if (contents) {
     const response = await fetch(`/api/posts/`, {
       method: 'POST',
-      body: JSON.stringify({ postText, time }),
+      body: JSON.stringify({ title, contents, date_created }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -24,17 +23,24 @@ const newPost = async (event) => {
 };
 
 const newComment = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+  event.preventDefault();
 
-    const response = await fetch(`/api/projects/${id}`, {
-      method: 'DELETE',
+  const contents = document.querySelector('#comment').value
+  const date_created = new Date();
+
+  if (contents) {
+    const response = await fetch(`/api/PENISVAGINA/`, {
+      method: 'POST',
+      body: JSON.stringify({ title, contents, date_created }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/dashboard');
     } else {
-      alert('Failed to delete project');
+      alert('cannot create post');
     }
   }
 };
