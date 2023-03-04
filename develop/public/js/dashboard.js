@@ -27,11 +27,12 @@ const newComment = async (event) => {
 
   const contents = document.querySelector('#comment').value
   const date_created = new Date();
+  const post_id = 
 
   if (contents) {
-    const response = await fetch(`/api/PENISVAGINA/`, {
+    const response = await fetch(`/api/comments/`, {
       method: 'POST',
-      body: JSON.stringify({ title, contents, date_created }),
+      body: JSON.stringify({ title, contents, date_created, post_id }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -51,4 +52,4 @@ document
 
 document
   .querySelector('#commentForm')
-  .addEventListener('click', newComment);
+  .addEventListener('submit', newComment);

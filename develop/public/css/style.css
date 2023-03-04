@@ -114,19 +114,19 @@ header,
 }
 
 .navbar {
-  background-color: rgb(25, 147, 163);
+  background-color: rgb(33, 202, 224);
 }
 
 .post {
   margin-bottom: 30px;
   padding: 5px;
   border-radius: 5px;
-  background-color: rgb(48, 180, 197);
+  background-color: rgb(22, 166, 185);
 }
 
 .card {
   margin-bottom: 10px;
-  background-color: rgb(25, 147, 163);
+  background-color: rgb(28, 188, 209);
   color: black;
   padding: 10px;
   /* width: fit-content; */
