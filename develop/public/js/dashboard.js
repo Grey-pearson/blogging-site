@@ -1,3 +1,4 @@
+
 const newPost = async (event) => {
   event.preventDefault();
 
@@ -22,17 +23,25 @@ const newPost = async (event) => {
   }
 };
 
+
+// can only add comments on top post
+// comments apear blank
+// other posts just give /return error
 const newComment = async (event) => {
   event.preventDefault();
 
-  const contents = document.querySelector('#comment').value
-  const date_created = new Date();
-  const post_id = 
+  const thisForm = event.target
 
-  if (contents) {
+  const text = thisForm.querySelector('.comment').value
+  const date_created = new Date();
+  // getting the id of the post its connected to
+  const post_id = thisForm.id
+  console.log(post_id)
+
+  if (text) {
     const response = await fetch(`/api/comments/`, {
       method: 'POST',
-      body: JSON.stringify({ title, contents, date_created, post_id }),
+      body: JSON.stringify({ text, date_created, post_id }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -43,6 +52,8 @@ const newComment = async (event) => {
     } else {
       alert('cannot create post');
     }
+  } else {
+    alert('no text to post')
   }
 };
 
@@ -51,5 +62,27 @@ document
   .addEventListener('submit', newPost);
 
 document
-  .querySelector('#commentForm')
-  .addEventListener('submit', newComment);
+  .querySelectorAll('.commentForm')
+  .forEach(element => element.addEventListener('submit', newComment))
+//.addEventListener('submit', newComment);
+
+
+// update
+
+// delete
+document
+  .querySelectorAll('.remove')
+  .forEach(element => element.addEventListener('click', async function () {
+    // console.log(element)
+    const postId = element.dataset.postId
+    console.log(postId)
+
+    const response = await fetch(`/api/comments/delete/${postId}`, {
+      method: 'DELETE',
+      // body: JSON.stringify({ text, date_created, post_id }),
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
+    });
+
+  }))

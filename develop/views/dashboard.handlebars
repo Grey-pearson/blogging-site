@@ -4,7 +4,7 @@
         <label for="post">create a post here</label>
         <input class="input" type="text" id="title" placeholder="title your post">
         <input class="input" type="text" id="post" placeholder="write here">
-        <button type="submit" class="button is-link">Create Post</button>
+        <button onclick="newPost(event)" class="button is-link">Create Post</button>
     </form>
 </div>
 
@@ -22,11 +22,13 @@
                 <br>
                 <time datetime='{{posts.date_created}}'>{{posts.date_created}}</time>
             </div>
+            <button class="update">update</button>
+            <button class="remove" data-post-id="{{posts.id}}">delete</button>
         </div>
     </div>
-    <div class="card" id="{{posts.id}}">
-        <form action="submit" id="commentForm">
-            <input class="input" type="text" id="comment" placeholder="comment here">
+    <div class="card">
+        <form action="submit" class="commentForm" id="{{posts.id}}">
+            <input class="input comment" type="text" placeholder="comment here">
         </form>
     </div>
     {{!-- renders each comment --}}

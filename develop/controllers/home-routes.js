@@ -80,7 +80,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     let eachComments = []
     post.forEach(comments => eachComments.push(comments.comments))
-
+    console.log(post)
     res.render('dashboard', {
       ...user,
       post,
