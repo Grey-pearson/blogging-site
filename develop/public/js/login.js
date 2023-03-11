@@ -26,8 +26,9 @@ const login = async (event) => {
 
 const signUp = async (event) => {
   event.preventDefault();
+  console.log('new user')
 
-  const username = document.querySelector('#username-login').value
+  const username = document.querySelector('#username-signup').value
   const password = document.querySelector('#password-signup').value.trim();
   console.log('checking if ok')
   if (username && password) {

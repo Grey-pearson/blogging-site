@@ -1,3 +1,4 @@
+// const { put } = require("../../controllers/api/postRoutes");
 
 const newPost = async (event) => {
   event.preventDefault();
@@ -23,10 +24,6 @@ const newPost = async (event) => {
   }
 };
 
-
-// can only add comments on top post
-// comments apear blank
-// other posts just give /return error
 const newComment = async (event) => {
   event.preventDefault();
 
@@ -64,25 +61,65 @@ document
 document
   .querySelectorAll('.commentForm')
   .forEach(element => element.addEventListener('submit', newComment))
-//.addEventListener('submit', newComment);
-
 
 // update
+document
+  .querySelectorAll('.update')
+  .forEach(element => element.addEventListener('click', async function () {
+
+    let updateForm = `
+    <div class="card">
+      <form action="submit" class="updatePostForm">
+        <input class="input updateText" type="text" placeholder="updated text here">
+        <button type="submit">update post</button>
+      </form>
+    </div>
+    `
+    const postId = element.dataset.postId
+    console.log(postId)
+    element.parentElement.parentElement.querySelector('.editButtons').classList.add('is-hidden')
+
+    element.parentElement.insertAdjacentHTML('beforebegin', updateForm)
+
+    document.querySelector('.updatePostForm').addEventListener('submit', async function (event) {
+      event.preventDefault()
+
+      let contents = document.querySelector('.updateText').value
+      console.log(postId)
+
+      const response = await fetch(`/api/posts/${postId}`, {
+        method: 'PUT',
+        body: JSON.stringify({ contents }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.ok) {
+        document.location.replace('/dashboard')
+      } else {
+        alert('failed to update')
+      }
+    })
+
+
+
+  }))
 
 // delete
 document
   .querySelectorAll('.remove')
   .forEach(element => element.addEventListener('click', async function () {
-    // console.log(element)
+
     const postId = element.dataset.postId
     console.log(postId)
 
-    const response = await fetch(`/api/comments/delete/${postId}`, {
+    const response = await fetch(`/api/posts/${postId}`, {
       method: 'DELETE',
-      // body: JSON.stringify({ text, date_created, post_id }),
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
     });
 
+    if (response.ok) {
+      document.location.replace('/dashboard')
+    } else {
+      alert('failed to delete')
+    }
   }))

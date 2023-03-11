@@ -4,7 +4,7 @@ const { User } = require('../../models');
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
-
+    console.log(userData)
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
     }
     const validPassword = userData.checkPassword(req.body.password);
     console.log(req.body.password)
-    console.log(30)
+    // console.log(30)
     if (!validPassword) {
       res
         .status(400)

@@ -11,7 +11,13 @@ router.get('/', async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        { model: Comment, }
+        {
+          model: Comment,
+          include: [{
+            model: User,
+            attributes: ['username'],
+          }]
+        }
       ],
     });
 
@@ -72,7 +78,13 @@ router.get('/dashboard', withAuth, async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        { model: Comment, }
+        {
+          model: Comment,
+          include: [{
+            model: User,
+            attributes: ['username'],
+          }]
+        }
       ],
     });
 
@@ -80,7 +92,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     let eachComments = []
     post.forEach(comments => eachComments.push(comments.comments))
-    console.log(post)
+    // console.log(post.comments)
     res.render('dashboard', {
       ...user,
       post,

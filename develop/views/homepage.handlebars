@@ -5,7 +5,7 @@
         <div class="card-content">
             <div class="media">
                 <div class="media-content">
-                    <p class="title is-4">{{posts.title}}</p>
+                    <p class="title is-4">{{posts.title}} by: {{posts.user.username}}</p>
                 </div>
             </div>
             <div class="content">
@@ -24,6 +24,7 @@
     {{#each posts.comments as |comments| }}
     <div class="card">
         <p>{{comments.text}}</p>
+        <p>By: {{comments.user.username}}</p>
     </div>
     {{/each}}
 </div>
